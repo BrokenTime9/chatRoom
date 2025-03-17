@@ -8,20 +8,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://chat-room-dpktems3g-brokentime9s-projects.vercel.app",
-    ],
+    origin: ["https://chat-room-dpktems3g-brokentime9s-projects.vercel.app/"],
     methods: ["GET", "POST"],
   },
 });
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://chat-room-dpktems3g-brokentime9s-projects.vercel.app",
-    ],
+    origin: ["https://chat-room-dpktems3g-brokentime9s-projects.vercel.app/"],
   }),
 );
 
