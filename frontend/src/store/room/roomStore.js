@@ -2,7 +2,9 @@ import { create } from "zustand";
 import { io } from "socket.io-client";
 import axios from "axios";
 
-const socket = io.connect("http://localhost:5000");
+const link = ["https://chatroom-2clf.onrender.com", "http://localhost:5000"];
+
+const socket = io.connect(link[0]);
 
 let initialized = false;
 
@@ -14,7 +16,7 @@ const useRoomStore = create((set, get) => ({
 
   fetchInitialData: async () => {
     try {
-      const response = await axios.get("http://localhost:5000/data");
+      const response = await axios.get(`${link[0]}/data`);
       const { rooms, users } = response.data;
 
       set({ rooms, activeUsers: users });
