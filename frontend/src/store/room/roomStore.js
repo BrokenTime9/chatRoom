@@ -17,7 +17,7 @@ const useRoomStore = create((set, get) => {
 
     fetchInitialData: async () => {
       try {
-        const response = await axios.get(`${link[1]}/data`);
+        const response = await axios.get(`${link[0]}/data`);
         const { rooms, users } = response.data;
         set({ rooms, activeUsers: users });
       } catch (error) {
@@ -29,7 +29,7 @@ const useRoomStore = create((set, get) => {
       if (initialized) return;
       initialized = true;
 
-      socket = io(link[1]);
+      socket = io(link[0]);
 
       socket.on("updateRooms", (rooms) => set({ rooms }));
 
