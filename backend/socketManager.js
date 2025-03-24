@@ -12,10 +12,10 @@ const data = async (req, res) => {
 
 const socketManager = (io) => {
   io.on("connection", (socket) => {
-    console.log(users);
     users.add(socket.id);
+    let id = socket.id;
 
-    io.emit("totalUsers", userSize());
+    socket.emit("currentUser", id);
 
     socket.emit("updateRooms", Array.from(rooms));
 
@@ -27,6 +27,8 @@ const socketManager = (io) => {
         io.emit("updateRooms", Array.from(rooms));
       }
     });
+
+    io.emit("totalUsers", userSize());
 
     socket.on("joinRoom", (room) => {
       socket.join(room);
